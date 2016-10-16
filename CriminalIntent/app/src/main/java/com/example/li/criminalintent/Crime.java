@@ -1,6 +1,6 @@
 package com.example.li.criminalintent;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.UUID;
 
 /**
@@ -11,12 +11,12 @@ public class Crime {
 
     private UUID mId;
     private String mTitle;
-    private Date mDate;
+    private Calendar mCalendar;
     private boolean mSolved;
 
     public Crime() {
         mId = UUID.randomUUID();
-        mDate = new Date();
+        mCalendar = Calendar.getInstance();
     }
 
     public UUID getmId() {
@@ -31,12 +31,8 @@ public class Crime {
         this.mTitle = mTitle;
     }
 
-    public Date getmDate() {
-        return mDate;
-    }
-
-    public void setmDate(Date mDate) {
-        this.mDate = mDate;
+    public Calendar getmCalendar() {
+        return mCalendar;
     }
 
     public boolean ismSolved() {

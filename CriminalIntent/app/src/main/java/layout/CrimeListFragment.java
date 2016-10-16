@@ -3,7 +3,6 @@ package layout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -17,6 +16,7 @@ import com.example.li.criminalintent.CrimePagerActivity;
 import com.example.li.criminalintent.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class CrimeListFragment extends android.support.v4.app.ListFragment {
 
@@ -78,7 +78,13 @@ public class CrimeListFragment extends android.support.v4.app.ListFragment {
             titleTextView.setText(c.getmTitle());
             TextView dateTextView =
                     (TextView) convertView.findViewById(R.id.crime_list_item_dateTextView);
-            dateTextView.setText(DateFormat.format("yyyy年MM月dd日,EEEE,kk:mm", c.getmDate()));
+            Calendar tempCalendar = c.getmCalendar();
+            int year = tempCalendar.get(Calendar.YEAR);
+            int month = tempCalendar.get(Calendar.MONTH) + 1;
+            int day = tempCalendar.get(Calendar.DAY_OF_MONTH);
+            int hour = tempCalendar.get(Calendar.HOUR_OF_DAY);
+            int minute = tempCalendar.get(Calendar.MINUTE);
+            dateTextView.setText(String.format("%d年%d月%d日 %02d:%02d", year, month, day, hour, minute));
             CheckBox solvedCheckBox =
                     (CheckBox) convertView.findViewById(R.id.crime_list_item_solvedCheckBox);
             solvedCheckBox.setChecked(c.ismSolved());
@@ -86,7 +92,4 @@ public class CrimeListFragment extends android.support.v4.app.ListFragment {
             return convertView;
         }
     }
-
-
-
 }
